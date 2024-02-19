@@ -186,6 +186,21 @@ class Section1:
         answer = {}
 
         # Enter your code, construct the `answer` dictionary, and return it.
+        k = [2,5,8,16]
+        answer ={}
+
+        for i in k:
+            clf = DecisionTreeClassifier(random_state=60)
+            cv_ss = ShuffleSplit(n_splits=i,random_state=60)
+            dec_tree_ss = u.train_simple_classifier_with_cv(Xtrain=Xtrain,ytrain=ytrain,clf=clf,cv=cv_ss)
+            res_ss_e= {}
+            res_ss_e['mean_accuracy'] = dec_tree_ss['test_score'].mean()
+            res_ss_e['std_accuracy'] = dec_tree_ss['test_score'].std()
+    
+            answer[i] = {} 
+            answer[i]['scores'] = res_ss_e
+            answer[i]['cv'] = cv_ss
+            answer[i]['clf'] = clf
 
         return answer
 
