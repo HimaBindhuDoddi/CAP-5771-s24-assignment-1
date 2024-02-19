@@ -119,13 +119,22 @@ class Section1:
         y: NDArray[np.int32],
     ):
         # Enter your code and fill the `answer` dictionary
+        clf = DecisionTreeClassifier(random_state=60)
+        cv = KFold(n_splits=5,shuffle = True,random_state=60)
+        dec_tree = u.train_simple_classifier_with_cv(Xtrain=Xtrain,ytrain=ytrain,clf=clf,cv=cv)
 
         answer = {}
-        answer["clf"] = None  # the estimator (classifier instance)
-        answer["cv"] = None  # the cross validator instance
+        answer["clf"] = clf  # the estimator (classifier instance)
+        answer["cv"] = cv  # the cross validator instance
         # the dictionary with the scores  (a dictionary with
         # keys: 'mean_fit_time', 'std_fit_time', 'mean_accuracy', 'std_accuracy'.
-        answer["scores"] = None
+        res_key ={}
+        res_key['mean_fit_time'] = dec_tree['fit_time'].mean()
+        res_key['std_fit_time'] = dec_tree['fit_time'].std()
+        res_key['mean_accuracy'] = dec_tree['test_score'].mean()
+        res_key['std_accuracy'] = dec_tree['test_score'].std()
+        
+        answer["scores"] = res_key
         return answer
 
     # ---------------------------------------------------------
