@@ -149,13 +149,21 @@ class Section1:
         y: NDArray[np.int32],
     ):
         # Enter your code and fill the `answer` dictionary
-
+        clf = DecisionTreeClassifier(random_state=60)
+        cv_ss = ShuffleSplit(n_splits=5,random_state=60)
+        dec_tree_ss = u.train_simple_classifier_with_cv(Xtrain=Xtrain,ytrain=ytrain,clf=clf,cv=cv_ss)
+        res_key_ss ={}
+        res_key_ss['mean_fit_time'] = dec_tree_ss['fit_time'].mean()
+        res_key_ss['std_fit_time'] = dec_tree_ss['fit_time'].std()
+        res_key_ss['mean_accuracy'] = dec_tree_ss['test_score'].mean()
+        res_key_ss['std_accuracy'] = dec_tree_ss['test_score'].std()
+        
         # Answer: same structure as partC, except for the key 'explain_kfold_vs_shuffle_split'
 
         answer = {}
-        answer["clf"] = None
-        answer["cv"] = None
-        answer["scores"] = None
+        answer["clf"] = clf
+        answer["cv"] = cv_ss
+        answer["scores"] = res_key_ss
         answer["explain_kfold_vs_shuffle_split"] = None
         return answer
 
