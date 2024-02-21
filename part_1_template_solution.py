@@ -119,8 +119,8 @@ class Section1:
         y: NDArray[np.int32],
     ):
         # Enter your code and fill the `answer` dictionary
-        clf = DecisionTreeClassifier(random_state=60)
-        cv = KFold(n_splits=5,shuffle = True,random_state=60)
+        clf = DecisionTreeClassifier(random_state=self.seed)
+        cv = KFold(n_splits=5,shuffle = True,random_state=self.seed)
         dec_tree = u.train_simple_classifier_with_cv(Xtrain=Xtrain,ytrain=ytrain,clf=clf,cv=cv)
 
         answer = {}
@@ -149,8 +149,8 @@ class Section1:
         y: NDArray[np.int32],
     ):
         # Enter your code and fill the `answer` dictionary
-        clf = DecisionTreeClassifier(random_state=60)
-        cv_ss = ShuffleSplit(n_splits=5,random_state=60)
+        clf = DecisionTreeClassifier(random_state=self.seed)
+        cv_ss = ShuffleSplit(n_splits=5,random_state=self.seed)
         dec_tree_ss = u.train_simple_classifier_with_cv(Xtrain=Xtrain,ytrain=ytrain,clf=clf,cv=cv_ss)
         res_key_ss ={}
         res_key_ss['mean_fit_time'] = dec_tree_ss['fit_time'].mean()
@@ -190,8 +190,8 @@ class Section1:
         answer ={}
 
         for i in k:
-            clf = DecisionTreeClassifier(random_state=60)
-            cv_ss = ShuffleSplit(n_splits=i,random_state=60)
+            clf = DecisionTreeClassifier(random_state=self.seed)
+            cv_ss = ShuffleSplit(n_splits=i,random_state=self.seed)
             dec_tree_ss = u.train_simple_classifier_with_cv(Xtrain=Xtrain,ytrain=ytrain,clf=clf,cv=cv_ss)
             res_ss_e= {}
             res_ss_e['mean_accuracy'] = dec_tree_ss['test_score'].mean()
