@@ -186,17 +186,15 @@ class Section2:
             answer_sub2 ={}
             clf = LogisticRegression(max_iter=300,random_state=self.seed)
             cv_ss = ShuffleSplit(n_splits=5,random_state=self.seed)
-            ran_tree_ss = u.train_simple_classifier_with_cv(Xtrain=X,ytrain=y,clf=clf,cv=cv_ss)
-            clf.fit(Xtrain,ytrain)
-            train_pred =clf.predict(Xtrain)
+            scores = cross_validate(clf, X, y, cv=cv_ss, return_train_score=True)
+            clf.fit(X, y)
+            scores_train_F = clf.score(X, y)
+            scores_test_F = clf.score(Xtest, ytest) 
+            train_pred =clf.predict(X)
             test_pred = clf.predict(Xtest)
-            scores_train_F = accuracy_score(ytrain,train_pred)
-            scores_test_F =  accuracy_score(ytest,test_pred)
-
-            conf_mat_train = confusion_matrix(ytrain,train_pred)
+            conf_mat_train = confusion_matrix(y,train_pred)
             conf_mat_test = confusion_matrix(ytest,test_pred)
-
-            mean_cv_accuracy_F = ran_tree_ss["test_score"].mean()
+            mean_cv_accuracy_F = scores["test_score"].mean()
             answer_sub2 = {
                 "scores_train_F": scores_train_F,
                 "scores_test_F": scores_test_F,
