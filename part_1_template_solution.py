@@ -278,9 +278,9 @@ class Section1:
         #model_fastest = min(partd_time,time)
         
         if partd_time < time:
-            model_fastest = "Decision Tree"
+            model_fastest = "decision-tree"
         else:
-            model_fastest =  "Random Forest"
+            model_fastest =  "random-forest"
         
         answer['model_fastest'] = model_fastest
         
