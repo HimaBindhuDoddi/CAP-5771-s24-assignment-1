@@ -71,6 +71,8 @@ class Section2:
     ]:
         
         Xtrain, ytrain, Xtest, ytest = u.prepare_data()
+        Xtrain = nu.scale_data(Xtrain)
+        Xtest = nu.scale_data(Xtest)
         answer = {}
         
         answer['nb_classes_train'] = len(np.unique(ytrain))
@@ -142,6 +144,9 @@ class Section2:
             Xtest = Xtest[0:test_rows]
             ytest = ytest[0:test_rows]
             
+            X = Xtrain
+            y = ytrain
+      
     
             answer1= {}
             # Part 1C
