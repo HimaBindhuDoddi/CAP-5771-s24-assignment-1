@@ -143,6 +143,7 @@ class Section2:
             ytrain = y[0:train_rows]
             Xtest = Xtest[0:test_rows]
             ytest = ytest[0:test_rows]
+
       
     
             answer1= {}
