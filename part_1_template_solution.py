@@ -249,9 +249,9 @@ class Section1:
         answer['scores_DT'] = res_part_D['scores']
         
         if res_part_D['scores']['mean_accuracy'] < ran_key_ss['mean_accuracy']:
-            model_highest_accuracy = "Random Forest"
+            model_highest_accuracy = "random-forest"
         else:
-            model_highest_accuracy =  "Decision Tree"
+            model_highest_accuracy =  "decision-tree"
             
         answer['model_highest_accuracy']= model_highest_accuracy
         
@@ -264,9 +264,9 @@ class Section1:
         #std_accuracy = min(var_partd,var_std)
         
         if var_partd < var_std:
-            model_lowest_variance = "Decision Tree"
+            model_lowest_variance = "decision-tree"
         else:
-            model_lowest_variance =  "Random Forest"
+            model_lowest_variance =  "random-forest"
             
             
         
